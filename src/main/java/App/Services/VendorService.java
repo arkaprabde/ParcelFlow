@@ -21,6 +21,9 @@ public class VendorService implements UserDetailsService
 	@Autowired
 	private ProductService p_service;
 	
+	@Autowired
+	private RoleService ro_service;
+	
 	@Transactional(readOnly = true)
 	public Vendor getVendor(String email)
 	{
@@ -29,6 +32,7 @@ public class VendorService implements UserDetailsService
 	
 	public Vendor putVendor(Vendor v)
 	{
+		ro_service.putRole(v);
 		return repo.save(v);
 	}
 	

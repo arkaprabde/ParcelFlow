@@ -29,6 +29,9 @@ public class BuyerService implements UserDetailsService
     @Autowired
     private ReviewService r_service;
     
+    @Autowired
+    private RoleService ro_service;
+    
     @Transactional(readOnly = true)
 	public Buyer getBuyer(String email)
 	{
@@ -37,6 +40,7 @@ public class BuyerService implements UserDetailsService
 	
 	public Buyer putBuyer(Buyer b)
 	{
+		ro_service.putRole(b);
 		return repo.save(b);
 	}
 	

@@ -65,7 +65,6 @@ public class Vendor  implements UserDetails, Serializable
 		this.phone = phone;
 		this.rating = rating;
 		this.experience = experience;
-		this.role.role = "VENDOR";
 	}
 
 	public String getEmail()
@@ -179,7 +178,7 @@ public class Vendor  implements UserDetails, Serializable
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
-        return List.of(new SimpleGrantedAuthority(getRole().role));
+        return List.of(new SimpleGrantedAuthority(getRole().getRole()));
     }
 
     @Override

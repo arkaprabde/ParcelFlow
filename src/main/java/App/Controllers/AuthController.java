@@ -26,6 +26,9 @@ public class AuthController
 	private VendorService vendorService;
 	
 	@Autowired
+	private AdminService adminService;
+	
+	@Autowired
 	private JwtUtil jwtUtil;
 	
 	@PostMapping("/register/buyer")
@@ -54,6 +57,15 @@ public class AuthController
         deliveryBoyService.putDeliveryBoy(boy);
         return ResponseEntity.ok("Delivery Boy registered successfully.");
     }
+	
+	@PostMapping("/login/admin")
+	public ResponseEntity<?> loginAdmin(@RequestBody LoginRequest req)
+	{
+		if(!adminService.validateAdmin(req.getEmail(), req.getPassword()))
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid Credentials");
+		return ResponseEntity.ok("token: " + jwtUtil.generateToken(req.getEmail()));
+			
+	}
 	
 	@PostMapping("/login/buyer")
 	public ResponseEntity<?> loginBuyer(@RequestBody LoginRequest req)

@@ -1,27 +1,27 @@
 package App.Entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Role
 {
 	@Id
-	@OneToOne
-    @JoinColumn(name = "email", referencedColumnName = "email")
+	@Column(nullable = false, unique = true)
 	private String email;
 	
-	String role;
+	@Column(nullable = false)
+	private String role;
 
-	Role()
+	public Role()
 	{
 		super();
 	}
 	
-	Role(String email, String role)
+	public Role(String email, String role)
 	{
+		super();
 		this.email = email;
 		this.role = role;
 	}

@@ -20,6 +20,9 @@ public class DeliveryBoyService implements UserDetailsService
     
     @Autowired
     private OrderService o_service;
+    
+    @Autowired
+    private RoleService ro_service;
 
     @Transactional(readOnly = true)
     public DeliveryBoy getDeliveryBoy(String email)
@@ -29,6 +32,7 @@ public class DeliveryBoyService implements UserDetailsService
 
     public DeliveryBoy putDeliveryBoy(DeliveryBoy deliveryBoy)
     {
+    	ro_service.putRole(deliveryBoy);
         return repo.save(deliveryBoy);
     }
 

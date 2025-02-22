@@ -47,7 +47,6 @@ public class DeliveryBoy  implements UserDetails, Serializable
 		this.phone = phone;
 		this.available = true;
 		this.orders_delivered = 0;
-		this.role.role = "DELIVERY_BOY";
 	}
 
 	public String getEmail()
@@ -155,7 +154,7 @@ public class DeliveryBoy  implements UserDetails, Serializable
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
-        return List.of(new SimpleGrantedAuthority(getRole().role));
+        return List.of(new SimpleGrantedAuthority(getRole().getRole()));
     }
 
     @Override

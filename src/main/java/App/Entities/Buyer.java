@@ -29,7 +29,7 @@ public class Buyer implements UserDetails, Serializable
 	private Cart cart;
 	
 	@OneToOne
-    @JoinColumn(name = "email", referencedColumnName = "email")  // Linking based on email
+    @JoinColumn(name = "email", referencedColumnName = "email")
     private Role role;
 
 	
@@ -55,7 +55,6 @@ public class Buyer implements UserDetails, Serializable
 		this.rating = rating;
 		this.premium = premium;
 		this.cart = cart;
-		this.role.role = "BUYER";
 	}
 
 	public String getEmail()
@@ -178,7 +177,7 @@ public class Buyer implements UserDetails, Serializable
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities()
     {
-        return List.of(new SimpleGrantedAuthority(getRole().role));
+        return List.of(new SimpleGrantedAuthority(getRole().getRole()));
     }
 
     @Override
