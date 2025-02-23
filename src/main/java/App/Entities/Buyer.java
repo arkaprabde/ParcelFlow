@@ -42,7 +42,7 @@ public class Buyer implements UserDetails, Serializable
 	}
 
 	public Buyer(String email, String password, String name, String address, String token,
-			String refresh_token, long phone, float rating, boolean premium, Cart cart)
+			String refresh_token, long phone, Cart cart)
 	{
 		super();
 		this.email = email;
@@ -52,8 +52,8 @@ public class Buyer implements UserDetails, Serializable
 		this.token = token;
 		this.refresh_token = refresh_token;
 		this.phone = phone;
-		this.rating = rating;
-		this.premium = premium;
+		this.rating = 0;
+		this.premium = false;
 		this.cart = cart;
 	}
 

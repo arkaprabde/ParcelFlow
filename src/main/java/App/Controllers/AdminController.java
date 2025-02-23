@@ -12,13 +12,12 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/admin")
-//@PreAuthorize("hasRole('ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController
 {
     @Autowired
     private AdminService adminService;
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/buyers")
     public ResponseEntity<Set<Buyer>> getAllBuyers()
     {
