@@ -11,7 +11,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Lob;
@@ -40,7 +40,8 @@ public class Vendor  implements UserDetails, Serializable
     private Role role;
 	
 	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonManagedReference
+	//@JsonIgnoreProperties("products")
     private Set<Product> products;
 	
 	public Vendor()
@@ -169,6 +170,11 @@ public class Vendor  implements UserDetails, Serializable
 	public Set<Product> getProducts()
 	{
 		return products;
+	}
+	
+	public void setProducts(Set<Product> p)
+	{
+		this.products = p;
 	}
 	
 	@Override

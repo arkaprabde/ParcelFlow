@@ -3,6 +3,7 @@ package App.Entities;
 import jakarta.persistence.*;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Product
@@ -28,6 +29,7 @@ public class Product
 	private Set<String> tags;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private Set<Review> reviews;
 	
 	public Product()

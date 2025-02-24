@@ -3,10 +3,11 @@ package App.Services;
 import App.Entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import io.github.cdimascio.dotenv.Dotenv;
+import java.util.HashSet;
 import java.util.Set;
+import App.Repos.ProductRepo;
 
 @Service
 public class AdminService
@@ -29,6 +30,9 @@ public class AdminService
 
     @Autowired
     private OrderService orderService;
+    
+    @Autowired
+    private ProductRepo p_repo;
 
     public Set<Buyer> getAllBuyers()
     {
@@ -39,6 +43,13 @@ public class AdminService
     {
         return vendorService.getAllVendors();
     }
+    
+    public Set<Product> getAllProducts()
+    {
+    	Set<Product> v = new HashSet<>();
+		p_repo.findAll().forEach(v :: add);
+		return v;
+	}
 
     public Set<DeliveryBoy> getAllDeliveryBoys()
     {

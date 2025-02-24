@@ -30,6 +30,12 @@ public class AdminController
     	System.out.println("here");
         return ResponseEntity.ok(adminService.getAllVendors());
     }
+    
+    @GetMapping("/products")
+    public ResponseEntity<Set<Product>> getAllProducts()
+    {
+        return ResponseEntity.ok(adminService.getAllProducts());
+    }
 
     @GetMapping("/delivery-boys")
     public ResponseEntity<Set<DeliveryBoy>> getAllDeliveryBoys()

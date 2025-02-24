@@ -7,6 +7,9 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -26,6 +29,7 @@ public class Buyer implements UserDetails, Serializable
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
+	@JsonManagedReference
 	private Cart cart;
 	
 	@OneToOne
@@ -34,6 +38,7 @@ public class Buyer implements UserDetails, Serializable
 
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonManagedReference
     private Set<OrderEntity> orders;
 	
 	public Buyer()

@@ -2,6 +2,7 @@ package App.Entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Review
@@ -12,10 +13,12 @@ public class Review
 
 	@ManyToOne
 	@JoinColumn(name = "buyer_email", nullable = false)
+	@JsonBackReference
 	private Buyer customer;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
+	@JsonBackReference
 	private Product product;
 
 	private LocalDate review_date;

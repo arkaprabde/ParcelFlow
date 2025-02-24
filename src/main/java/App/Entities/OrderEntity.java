@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class OrderEntity
 {
@@ -13,9 +15,11 @@ public class OrderEntity
 
 	@ManyToOne
 	@JoinColumn(name = "buyer_email", nullable = false)
+	@JsonBackReference
 	private Buyer customer;
 
 	@ManyToMany
+	@JsonBackReference
 	@JoinTable(
 		name = "order_products",
 		joinColumns = @JoinColumn(name = "o_id"),
