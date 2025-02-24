@@ -1,6 +1,8 @@
 package App.Entities;
+
 import jakarta.persistence.*;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Product
@@ -19,6 +21,7 @@ public class Product
 
 	@ManyToOne
 	@JoinColumn(name = "vendor_email", referencedColumnName = "email")
+	@JsonBackReference
 	private Vendor vendor;
 
 	@ElementCollection

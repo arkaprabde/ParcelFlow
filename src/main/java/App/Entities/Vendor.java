@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +11,7 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Lob;
@@ -39,12 +39,8 @@ public class Vendor  implements UserDetails, Serializable
     @JoinColumn(name = "email", referencedColumnName = "email")
     private Role role;
 	
-	/*
-	@OneToMany
-	@JoinColumn(name = "p_id", referencedColumnName = "id")
-	private Set<Product> products;*/
-	
 	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonBackReference
     private Set<Product> products;
 	
 	public Vendor()
