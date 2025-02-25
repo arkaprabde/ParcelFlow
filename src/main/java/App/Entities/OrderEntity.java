@@ -15,11 +15,10 @@ public class OrderEntity
 
 	@ManyToOne
 	@JoinColumn(name = "buyer_email", nullable = false)
-	@JsonBackReference
+	@JsonBackReference("buyer-orders")
 	private Buyer customer;
 
 	@ManyToMany
-	@JsonBackReference
 	@JoinTable(
 		name = "order_products",
 		joinColumns = @JoinColumn(name = "o_id"),

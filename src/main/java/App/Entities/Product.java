@@ -15,21 +15,21 @@ public class Product
 	private String name, description;
 
 	@Lob
-	private String images; // Large image data or URLs
+	private String images;
 
 	private float price;
 	private long availability, ordered_no;
 
 	@ManyToOne
 	@JoinColumn(name = "vendor_email", referencedColumnName = "email")
-	@JsonBackReference
+	@JsonBackReference("vendor-product")
 	private Vendor vendor;
 
 	@ElementCollection
 	private Set<String> tags;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+	@JsonManagedReference("product-reviews")
 	private Set<Review> reviews;
 	
 	public Product()

@@ -4,17 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import App.Entities.*;
 import App.Repos.RoleRepo;
-import io.github.cdimascio.dotenv.Dotenv;
-import jakarta.annotation.PostConstruct;
 
 @Service
 public class RoleService 
 {
 	
+	@Autowired
+	private RoleRepo repo;
+	/*
 	private final Dotenv dotenv = Dotenv.load();
     private final String adminEmail = dotenv.get("ADMIN_EMAIL");
     //private final String adminPassword = dotenv.get("ADMIN_PASSWORD");
-	
 	@PostConstruct
 	public void initAdminRole()
 	{
@@ -26,9 +26,7 @@ public class RoleService
 		}
 		else
 			System.out.println("Admin already exists.");
-	}
-	@Autowired
-	private RoleRepo repo;
+	}*/
 	
 	public Role putRole(Buyer b)
 	{

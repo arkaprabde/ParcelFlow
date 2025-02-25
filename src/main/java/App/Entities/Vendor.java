@@ -40,8 +40,7 @@ public class Vendor  implements UserDetails, Serializable
     private Role role;
 	
 	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference
-	//@JsonIgnoreProperties("products")
+	@JsonManagedReference("vendor-product")
     private Set<Product> products;
 	
 	public Vendor()

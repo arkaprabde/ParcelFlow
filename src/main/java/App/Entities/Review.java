@@ -13,12 +13,11 @@ public class Review
 
 	@ManyToOne
 	@JoinColumn(name = "buyer_email", nullable = false)
-	@JsonBackReference
 	private Buyer customer;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
-	@JsonBackReference
+	@JsonBackReference("product-reviews")
 	private Product product;
 
 	private LocalDate review_date;

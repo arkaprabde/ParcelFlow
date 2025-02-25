@@ -29,7 +29,7 @@ public class Buyer implements UserDetails, Serializable
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
-	@JsonManagedReference
+	@JsonManagedReference("buyer-cart")
 	private Cart cart;
 	
 	@OneToOne
@@ -38,7 +38,7 @@ public class Buyer implements UserDetails, Serializable
 
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference("buyer-orders")
     private Set<OrderEntity> orders;
 	
 	public Buyer()

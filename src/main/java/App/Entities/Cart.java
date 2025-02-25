@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Cart
 {
@@ -13,7 +14,7 @@ public class Cart
 
     @OneToOne
     @JoinColumn(name = "buyer_email", referencedColumnName = "email")
-    @JsonBackReference
+    @JsonBackReference("buyer-cart")
     private Buyer buyer;
 
     @OneToMany(cascade = CascadeType.ALL)
